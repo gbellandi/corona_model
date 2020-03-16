@@ -13304,13 +13304,14 @@ Bij de standaard situatie voor onze case werden volgende waarden voor initiele c
     <span class="n">init</span><span class="o">=</span><span class="n">fixed</span><span class="p">([</span><span class="mi">6000</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="c1"># initiële condities</span>
     <span class="n">varnames</span><span class="o">=</span><span class="n">fixed</span><span class="p">([</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">]),</span> <span class="c1"># namen variabelen</span>
     <span class="n">f</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="n">corona</span><span class="o">.</span><span class="n">model_afgeleiden</span><span class="p">),</span> <span class="c1"># naam functie afgeleiden</span>
-    <span class="n">parameternaam</span><span class="o">=</span><span class="n">ToggleButtons</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">]),</span>
-    <span class="n">log_perturbatie</span> <span class="o">=</span> <span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span> <span class="nb">max</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">parameternaam</span> <span class="o">=</span> <span class="n">ToggleButtons</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">]),</span>
+    <span class="n">log_perturbatie</span> <span class="o">=</span> <span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span> <span class="nb">max</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+         
     <span class="n">soort</span><span class="o">=</span><span class="n">ToggleButtons</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span>
             <span class="s1">&#39;absolute sensitiviteit&#39;</span><span class="p">,</span> <span class="s1">&#39;relatieve sensitiviteit parameter&#39;</span><span class="p">,</span>
             <span class="s1">&#39;relatieve sensitiviteit variabele&#39;</span><span class="p">,</span><span class="s1">&#39;relatieve totale sensitiviteit&#39;</span><span class="p">]),</span>
     <span class="c1"># vanaf hier: functie specifieke parameters</span>
-    <span class="n">beta</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">),</span> <span class="n">gamma</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+    <span class="n">beta</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">),</span> <span class="n">gamma</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mf">0.1</span><span class="p">));</span>
 </pre></div>
 
     </div>
@@ -13332,18 +13333,6 @@ Bij de standaard situatie voor onze case werden volgende waarden voor initiele c
       Loading widgets...
     </button>
   </div>
-
-</div>
-
-<div class="output_area">
-
-    
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;function corona.sensitiviteit(tijdstappen, init, varnames, f, parameternaam, log_perturbatie=-4, soort=&#39;absoluut&#39;, **kwargs)&gt;</pre>
-</div>
 
 </div>
 
