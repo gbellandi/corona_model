@@ -13119,6 +13119,141 @@ div#notebook {
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Visualization-of-infection-rate-(weekly-new-cases)">Visualization of infection rate (weekly new cases)<a class="anchor-link" href="#Visualization-of-infection-rate-(weekly-new-cases)">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Check the rate of infections for one or multiple countries</p>
+
+</div>
+</div>
+</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">plot_infectionrate</span><span class="p">,</span>
+         <span class="n">Confirmedweeklyrates</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="p">),</span>
+         <span class="n">country</span> <span class="o">=</span> <span class="n">SelectMultiple</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Belgium&#39;</span><span class="p">,</span> <span class="s1">&#39;Italy&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">],</span>
+                                  <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Select country(ies)&#39;</span><span class="p">,</span>
+                                  <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
+                                  <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;40%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;100px&#39;</span><span class="p">)),</span>
+         <span class="n">return_df</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
+         <span class="n">return_plot</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">True</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="loglog-plot">loglog plot<a class="anchor-link" href="#loglog-plot">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Inspired by <a href="https://t.co/q2AtUQBX5P?amp=1">https://t.co/q2AtUQBX5P?amp=1</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A smart way of visualizing how effective are the measures taken from each country to limit the infection rate. When the Y axis values drop significantly, this means that the spreading of the infections is sensibly decreased.</p>
+
+</div>
+</div>
+</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">loglog_covid2</span><span class="p">,</span>
+         <span class="n">Confirmedweeklyrates</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="p">),</span>
+         <span class="n">countries</span> <span class="o">=</span> <span class="n">SelectMultiple</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">Confirmedweeklyrates</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span> <span class="s1">&#39;Belgium&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">]),</span>
+<span class="c1">#                                     description=&#39;Select countries (Ctrl+ for multi-selection)&#39;, </span>
+<span class="c1">#                                     style = {&#39;description_width&#39;: &#39;initial&#39;},</span>
+<span class="c1">#                                     layout=Layout(width=&#39;50%&#39;, height=&#39;200px&#39;)),</span>
+         <span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    
+
+
+
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+</div>
+
+</div>
+</div>
+
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Below you can find the code</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Import-modules">Import modules<a class="anchor-link" href="#Import-modules">&#182;</a></h1>
+</div>
+</div>
+</div>
 
   
 
@@ -13339,101 +13474,6 @@ div#notebook {
 </div>
 
   </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Visualization-of-infection-rate-(weekly-new-cases)">Visualization of infection rate (weekly new cases)<a class="anchor-link" href="#Visualization-of-infection-rate-(weekly-new-cases)">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Check the rate of infections for one or multiple countries</p>
-
-</div>
-</div>
-</div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">plot_infectionrate</span><span class="p">,</span>
-         <span class="n">Confirmedweeklyrates</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="p">),</span>
-         <span class="n">country</span> <span class="o">=</span> <span class="n">SelectMultiple</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Belgium&#39;</span><span class="p">,</span> <span class="s1">&#39;Italy&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">],</span>
-                                  <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Select country(ies)&#39;</span><span class="p">,</span>
-                                  <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
-                                  <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;40%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;100px&#39;</span><span class="p">)),</span>
-         <span class="n">return_df</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span>
-         <span class="n">return_plot</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">True</span><span class="p">));</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
-</div>
-</div>
-
-  </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="loglog-plot">loglog plot<a class="anchor-link" href="#loglog-plot">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Inspired by <a href="https://t.co/q2AtUQBX5P?amp=1">https://t.co/q2AtUQBX5P?amp=1</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>A smart way of visualizing how effective are the measures taken from each country to limit the infection rate. When the Y axis values drop significantly, this means that the spreading of the infections is sensibly decreased.</p>
-
-</div>
-</div>
-</div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Confirmedweeklyrates</span> <span class="o">=</span> <span class="p">(</span><span class="n">Confirmed</span> <span class="o">-</span> <span class="n">Confirmed</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">Week</span><span class="p">())</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">index</span><span class="p">))</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-  </div>
 
   
 
@@ -13461,50 +13501,6 @@ div#notebook {
 </pre></div>
 
     </div>
-</div>
-</div>
-
-  </div>
-
-  
-
-  <div class="
-      cell border-box-sizing code_cell rendered">
-    <div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">loglog_covid2</span><span class="p">,</span>
-         <span class="n">Confirmedweeklyrates</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="p">),</span>
-         <span class="n">countries</span> <span class="o">=</span> <span class="n">SelectMultiple</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">Confirmedweeklyrates</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span> <span class="s1">&#39;Belgium&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">]),</span>
-<span class="c1">#                                     description=&#39;Select countries (Ctrl+ for multi-selection)&#39;, </span>
-<span class="c1">#                                     style = {&#39;description_width&#39;: &#39;initial&#39;},</span>
-<span class="c1">#                                     layout=Layout(width=&#39;50%&#39;, height=&#39;200px&#39;)),</span>
-         <span class="p">);</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    
-
-
-
-  <div class="output_subarea output_widget_view ">
-    <button class="js-nbinteract-widget">
-      Loading widgets...
-    </button>
-  </div>
-
-</div>
-
 </div>
 </div>
 
