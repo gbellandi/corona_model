@@ -13322,13 +13322,13 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">logistic_covid</span><span class="p">(</span><span class="n">covid19_df</span><span class="p">,</span> <span class="n">nation</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">logistic_covid</span><span class="p">(</span><span class="n">covid19_df</span><span class="p">,</span> <span class="n">country</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    df: dataframe of covid19 data with nations as columns and timestamp as index</span>
-<span class="sd">    nation: string</span>
+<span class="sd">    country: string</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">covid19_df</span><span class="p">[</span><span class="n">nation</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">covid19_df</span><span class="p">[</span><span class="n">country</span><span class="p">]</span>
     
     <span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -13346,7 +13346,7 @@ div#notebook {
 
 <span class="c1">#     print(&#39;Infection speed &#39;+str(round(a)))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Maximum infections occurred on &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_timedelta</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total predicted infected &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">c</span><span class="p">))</span><span class="o">+</span> <span class="s1">&#39; +-&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total predicted infections &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">c</span><span class="p">))</span><span class="o">+</span> <span class="s1">&#39; +-&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
 
     <span class="n">sol</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fsolve</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">logistic_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">),</span><span class="n">b</span><span class="p">))</span>
     <span class="n">pred_x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">sol</span><span class="p">))</span>
@@ -13384,7 +13384,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">logistic_covid</span><span class="p">,</span> 
          <span class="n">covid19_df</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="n">Confirmed</span><span class="p">),</span>
-         <span class="n">nation</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;Italy&#39;</span><span class="p">));</span>
+         <span class="n">country</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;Italy&#39;</span><span class="p">));</span>
 </pre></div>
 
     </div>
@@ -13520,30 +13520,18 @@ div#notebook {
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">SIRmodel_logbeta2</span><span class="p">,</span> 
-         
-         <span class="n">timesteps</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> 
-         
-         <span class="n">country</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;US&#39;</span><span class="p">),</span>
-         
+         <span class="n">timesteps</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">country</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;US&#39;</span><span class="p">),</span> 
          <span class="n">measured_cases</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="n">Confirmed</span><span class="p">),</span>
-         
-         <span class="n">S_0</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">500000</span><span class="p">,</span> 
-                           <span class="nb">min</span><span class="o">=</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> 
-                           <span class="nb">max</span><span class="o">=</span><span class="mi">5</span><span class="o">*</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> 
-                           <span class="n">step</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                           <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Affected population&#39;</span><span class="p">),</span> 
+         <span class="n">S_0</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">500000</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="nb">max</span><span class="o">=</span><span class="mi">5</span><span class="o">*</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">step</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Affected population&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span> 
+                           <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;50%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;30px&#39;</span><span class="p">)),</span> 
          <span class="n">I_0</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">R_0</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-         
-         <span class="n">log10_beta</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=-</span><span class="mf">6.3</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">8</span><span class="p">,</span> <span class="nb">max</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
-                                <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2e&#39;</span><span class="p">,</span>
-                               <span class="n">description</span><span class="o">=</span><span class="s1">&#39;log10(infection rate)&#39;</span><span class="p">),</span>
-         
-         <span class="n">gamma</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
-                           <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2e&#39;</span><span class="p">,</span>
-                          <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Recovery rate&#39;</span><span class="p">),</span>
-         <span class="n">returnDataFrame</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">));</span>
-<span class="c1"># axes.plot(COVID19_totalConf, &#39;rx&#39;)</span>
+         <span class="n">log10_beta</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=-</span><span class="mf">6.3</span><span class="p">,</span> <span class="nb">min</span><span class="o">=-</span><span class="mi">8</span><span class="p">,</span> <span class="nb">max</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">continuous_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2e&#39;</span><span class="p">,</span>
+                               <span class="n">description</span><span class="o">=</span><span class="s1">&#39;log10(infection rate)&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span> 
+                                <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;50%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;30px&#39;</span><span class="p">)),</span>
+         <span class="n">gamma</span><span class="o">=</span><span class="n">FloatSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mf">0.06</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Recovery rate&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span> 
+                           <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;50%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;30px&#39;</span><span class="p">)),</span>          
+         <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.2e&#39;</span><span class="p">,</span> <span class="n">returnDataFrame</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">),</span> <span class="n">plotFig</span><span class="o">=</span><span class="n">fixed</span><span class="p">(</span><span class="kc">True</span><span class="p">));</span>
 </pre></div>
 
     </div>
@@ -13613,13 +13601,13 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_infectionrate</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="n">return_plot</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">return_df</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Confirmed_rate: rate of infection adjusted from JHU</span>
+<span class="sd">    Confirmedweeklyrates: rate of infection adjusted from JHU</span>
 <span class="sd">    country: string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">country</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">Confirmed_Wrate</span><span class="p">[</span><span class="n">country</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">Confirmedweeklyrates</span><span class="p">[</span><span class="n">country</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">return_plot</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">return_df</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">return</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
 </pre></div>
@@ -13646,9 +13634,9 @@ div#notebook {
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
     
-    <span class="n">df</span> <span class="o">=</span> <span class="n">infectionrate</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="p">,</span> <span class="n">countries</span><span class="p">,</span> <span class="n">return_plot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_df</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">Confirmedweeklyrates</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">countries</span><span class="p">)]</span>
 
-    <span class="n">axes</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
     <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Loglog&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Weekly increase of positive cases&#39;</span><span class="p">)</span>
@@ -13824,11 +13812,11 @@ div#notebook {
     <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
     
 
-    <span class="n">axes</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">Confirmedweeklyrates</span><span class="p">[</span><span class="n">countries</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">Confirmedweeklyrates</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">countries</span><span class="p">)]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
     <span class="n">axes</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Loglog&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Weekly increase of positive cases&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Total cases globally&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Global cases confirmed&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">1e4</span><span class="p">,</span><span class="mf">1e7</span><span class="p">])</span>
 </pre></div>
 
@@ -13846,13 +13834,12 @@ div#notebook {
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">loglog_covid</span><span class="p">,</span>
-         <span class="n">Confirmed</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="n">Confirmed</span><span class="p">),</span>
-         <span class="n">countries</span> <span class="o">=</span> <span class="n">SelectMultiple</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">Confirmed</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Belgium&#39;</span><span class="p">,</span> <span class="s1">&#39;Italy&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">],</span>
-                                 <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Select countries (Ctrl+ for multi-selection)&#39;</span><span class="p">,</span> 
-                                    <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
-                                    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;50%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;200px&#39;</span><span class="p">)),</span>
-         <span class="n">return_df</span><span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="kc">False</span><span class="p">));</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">interact</span><span class="p">(</span><span class="n">loglog_covid2</span><span class="p">,</span>
+         <span class="n">Confirmedweeklyrates</span> <span class="o">=</span> <span class="n">fixed</span><span class="p">(</span><span class="n">Confirmedweeklyrates</span><span class="p">),</span>
+         <span class="n">countries</span> <span class="o">=</span> <span class="n">SelectMultiple</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">Confirmedweeklyrates</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> 
+                                    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Select countries (Ctrl+ for multi-selection)&#39;</span><span class="p">,</span> 
+                                    <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span> <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;60%&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s1">&#39;150px&#39;</span><span class="p">),</span>
+                                    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span> <span class="s1">&#39;Belgium&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">]));</span>
 </pre></div>
 
     </div>
@@ -13877,6 +13864,23 @@ div#notebook {
 
 </div>
 
+</div>
+</div>
+
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
